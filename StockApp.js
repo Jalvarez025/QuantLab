@@ -106,6 +106,8 @@ function createOutput(inputString){
     inputString = inputString.replace('﻿','').replaceAll('\n',',').replaceAll('\r','')
     inputString = inputString.split(',')
 
+    const stockArray = []
+
     //iterate through elements
     for (let i = 0; i < inputString.length; i += 4) {
         var stk = new Stock(
@@ -114,10 +116,17 @@ function createOutput(inputString){
             parseInt(inputString[i + 2]),
             parseInt(inputString[i + 3])
         )
-        console.log(stk)
+
+        stockArray.push(stk)
+
+        //console.log(stk)
     }
 
-    //console.log(stk)
+    //iterate through stockArray to make calculations
+    stockArray.forEach(function(Stock){
+        console.log(Stock.symbol)
+    })
 
+    
 
 }

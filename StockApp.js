@@ -96,11 +96,11 @@ error ? console.error(error) : createOutput(data)
 function createOutput(inputString){
     // <TimeStamp>,<Symbol>,<Quantity>,<Price>
     var Stock = function(timeStamp, symbol, quantity, price) {
-        this.timeStamp = timeStamp;
-        this.symbol = symbol;
-        this.quantity = quantity;
-        this.price = price;
-    };
+        this.timeStamp = timeStamp
+        this.symbol = symbol
+        this.quantity = quantity
+        this.price = price
+    }
 
     //divide test.csv and create ordered list
     inputString = inputString.replace('﻿','').replaceAll('\n',',').replaceAll('\r','')
@@ -122,10 +122,50 @@ function createOutput(inputString){
         //console.log(stk)
     }
 
-    //iterate through stockArray to make calculations
-    stockArray.forEach(function(Stock){
-        console.log(Stock.symbol)
-    })
+    // <symbol>,<MaxTimeGap>,<Volume>,<WeightedAveragePrice>,<MaxPrice>
+    var StockOutput = function(symbol, maxTimeGap, volume, weightedAveragePrice, maxPrice) {
+
+        this.symbol = symbol
+        this.maxTimeGap = maxTimeGap
+        this.volume = volume
+        this.weightedAveragePrice = weightedAveragePrice
+        this.maxPrice = maxPrice
+    }
+
+    for(let i = 0; i < stockArray.length; i++){
+        if (!StockOutput.symbol) {
+            StockOutput.symbol = stockArray[i].symbol
+        } else if (StockOutput.symbol != stockArray[i].symbol) {
+            StockOutput.symbol = stockArray[i].symbol
+        }
+
+        //console.log(StockOutput)
+
+        for(let j = i+1; j < stockArray.length; j++){
+
+            if(stockArray[i].symbol == stockArray[j].symbol){
+                console.log("stockArray[i].symbol: "+stockArray[i].symbol+" stockArray[j].symbol: "+stockArray[j].symbol)
+                console.log("stockArray[i].timeStamp: "+stockArray[i].timeStamp+" stockArray[j].timeStamp: "+stockArray[j].timeStamp)
+            }
+            //console.log("stockArray[i].symbol: "+stockArray[i].symbol+" stockArray[j].symbol: "+stockArray[j].symbol)
+        }
+        
+    }
+
+    // //iterate through stockArray to make calculations
+    // stockArray.forEach(function(Stock){
+
+    //     if(!StockOutput.symbol){
+    //         StockOutput.symbol = Stock.symbol
+    //     }else if(StockOutput.symbol != Stock.symbol){
+    //         StockOutput.symbol = Stock.symbol
+    //     }else if(StockOutput.symbol == Stock.symbol){
+    //         //console.log(Stock.symbol)
+    //     }
+        
+    // })
+
+    // console.log(StockOutput)
 
     
 

@@ -132,41 +132,64 @@ function createOutput(inputString){
         this.maxPrice = maxPrice
     }
 
-    for(let i = 0; i < stockArray.length; i++){
-        if (!StockOutput.symbol) {
-            StockOutput.symbol = stockArray[i].symbol
-        } else if (StockOutput.symbol != stockArray[i].symbol) {
-            StockOutput.symbol = stockArray[i].symbol
-        }
+    var stockOutputArray = []
 
-        //console.log(StockOutput)
+    for (let i = 0; i < stockArray.length; i++) {
+        // if(!stkOtpt){
+        //     var stkOtpt = new StockOutput(stockArray[i].symbol)
+        //     stockOutputArray.push(stkOtpt)
+        // }else if(stockOutputArray[i-1].symbol != stockArray[i].symbol && stkOtpt.symbol != stockArray[i-1].symbol){
+        //     var stkOtpt = new StockOutput(stockArray[i].symbol)
+        //     stockOutputArray.push(stkOtpt)
+        //     console.log(stockArray[i].symbol)
+        // }
 
-        for(let j = i+1; j < stockArray.length; j++){
-
-            if(stockArray[i].symbol == stockArray[j].symbol){
-                console.log("stockArray[i].symbol: "+stockArray[i].symbol+" stockArray[j].symbol: "+stockArray[j].symbol)
-                console.log("stockArray[i].timeStamp: "+stockArray[i].timeStamp+" stockArray[j].timeStamp: "+stockArray[j].timeStamp)
+        for(let j = 0; j < stockArray.length; j++){
+            if(!stkOtpt){
+                var stkOtpt = new StockOutput(stockArray[i].symbol)
+                stockOutputArray.push(stkOtpt)
+                console.log(stkOtpt)
+            }else if(stkOtpt.symbol != stockArray[j].symbol){
+                var stkOtpt = new StockOutput(stockArray[j].symbol)
+                console.log(stkOtpt)
             }
-            //console.log("stockArray[i].symbol: "+stockArray[i].symbol+" stockArray[j].symbol: "+stockArray[j].symbol)
         }
-        
+        break;
     }
 
-    // //iterate through stockArray to make calculations
-    // stockArray.forEach(function(Stock){
+    //console.log()
 
-    //     if(!StockOutput.symbol){
-    //         StockOutput.symbol = Stock.symbol
-    //     }else if(StockOutput.symbol != Stock.symbol){
-    //         StockOutput.symbol = Stock.symbol
-    //     }else if(StockOutput.symbol == Stock.symbol){
-    //         //console.log(Stock.symbol)
-    //     }
+    // for(let i = 0; i < stockArray.length; i++){
+    //     // if (!stkOtpt) {
+    //     //     var stkOtpt = new StockOutput(stockArray[i].symbol)
+    //     //     //stockOutputArray.push(stkOtpt)
+    //     // } else if ((stkOtpt.symbol != stockArray[i].symbol) && (stkOtpt.symbol != stockArray[i-1].symbol)) {
+    //     //     var stkOtpt = new StockOutput(stockArray[i].symbol)
+
+    //     // }
+
         
-    // })
+        
+        
 
-    // console.log(StockOutput)
+    //     for(let j = i+1; j < stockArray.length; j++){
 
+            
+            
+
+            
+
+    //         if(stockArray[i].symbol == stockArray[j].symbol){
+    //             //console.log("stockArray[i].symbol: "+stockArray[i].symbol+" stockArray[j].symbol: "+stockArray[j].symbol)
+    //             //console.log("stockArray[i].timeStamp: "+stockArray[i].timeStamp+" stockArray[j].timeStamp: "+stockArray[j].timeStamp)
+    //         }
+    //         //console.log("stockArray[i].symbol: "+stockArray[i].symbol+" stockArray[j].symbol: "+stockArray[j].symbol)
+    //     }
+
+        
+    //     console.log(stkOtpt)
+    // }
     
+    //console.log(stockOutputArray)
 
 }

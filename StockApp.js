@@ -116,10 +116,7 @@ function createOutput(inputString){
             parseInt(inputString[i + 2]),
             parseInt(inputString[i + 3])
         )
-
         stockArray.push(stk)
-
-        //console.log(stk)
     }
 
     // <symbol>,<MaxTimeGap>,<Volume>,<WeightedAveragePrice>,<MaxPrice>
@@ -141,51 +138,44 @@ function createOutput(inputString){
         if (a.symbol > b.symbol) {
             return 1;
         }
-
-        // names must be equal
         return 0;
     })
 
     for (let i = 0; i < stockArray.length; i++) {
-        for(let j = 0; j < stockArray.length; j++){
+        for(let j = i+1; j < stockArray.length; j++){
             if(!stkOtpt){
                 var stkOtpt = new StockOutput(stockArray[i].symbol)
                 stockOutputArray.push(stkOtpt)
-                //console.log(stkOtpt)
             }else if(stockOutputArray[i].symbol != stockArray[j].symbol && stkOtpt.symbol != stockArray[j].symbol){
                 var stkOtpt = new StockOutput(stockArray[j].symbol)
                 stockOutputArray.push(stkOtpt)
-                //console.log(stockArray[j].symbol)
             }
         }
-        break;
+        break
     }
 
-    console.log(stockOutputArray)
+    var tempArray = []
+    for(let i = 0; i < stockArray.length; i++){
+        for(let j = i+1; j < stockArray.length; j++){
 
-    // for (let i = 0; i < stockArray.length; i++) {
-    //     // if(!stkOtpt){
-    //     //     var stkOtpt = new StockOutput(stockArray[i].symbol)
-    //     //     stockOutputArray.push(stkOtpt)
-    //     // }else if(stockOutputArray[i-1].symbol != stockArray[i].symbol && stkOtpt.symbol != stockArray[i-1].symbol){
-    //     //     var stkOtpt = new StockOutput(stockArray[i].symbol)
-    //     //     stockOutputArray.push(stkOtpt)
-    //     //     console.log(stockArray[i].symbol)
-    //     // }
+            if(stockArray[i] != stockArray[j] && stockArray[i].symbol == stockArray[j].symbol){
+                console.log("stockArray[i]vvvv")
+                console.log(stockArray[i])
+                console.log("stockArray[j]vvvv")
+                console.log(stockArray[j])
+            }
+            // else if(tempArray[j] != tempArray[i]){
 
-    //     for(let j = 0; j < stockArray.length; j++){
-    //         if(!stkOtpt){
-    //             var stkOtpt = new StockOutput(stockArray[i].symbol)
-    //             stockOutputArray.push(stkOtpt)
-    //             //console.log(stkOtpt)
-    //         }else if(stockOutputArray[i].symbol != stockArray[j].symbol && stkOtpt.symbol != stockArray[j].symbol){
-    //             var stkOtpt = new StockOutput(stockArray[j].symbol)
-    //             stockOutputArray.push(stkOtpt)
-    //             console.log(stockOutputArray[i].symbol)
-    //         }
-    //     }
-    //     break;
-    // }
+            // }
 
-    //console.log(stockOutputArray)
+            // if(stockArray[i].symbol == stockArray[j].symbol && tempArray[j] != tempArray[i]){
+            //     var stkOtpt1 = new StockOutput(stockArray[j].symbol, stockArray[j].timeStamp, stockArray[j].quantity, stockArray[j].price, stockArray[j].price)
+            //     tempArray.push(stkOtpt1)
+            //     console.log("stockArray[i]: "+stockArray[i].symbol+" stockArray[j]: "+stockArray[j].symbol)
+            //     console.log(tempArray[j])
+            //     //console.log("stkOtpt1: "+stkOtpt1)
+            // }
+        }
+    }
+    //console.log(tempArray)
 }

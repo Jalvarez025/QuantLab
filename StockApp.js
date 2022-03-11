@@ -134,62 +134,58 @@ function createOutput(inputString){
 
     var stockOutputArray = []
 
-    for (let i = 0; i < stockArray.length; i++) {
-        // if(!stkOtpt){
-        //     var stkOtpt = new StockOutput(stockArray[i].symbol)
-        //     stockOutputArray.push(stkOtpt)
-        // }else if(stockOutputArray[i-1].symbol != stockArray[i].symbol && stkOtpt.symbol != stockArray[i-1].symbol){
-        //     var stkOtpt = new StockOutput(stockArray[i].symbol)
-        //     stockOutputArray.push(stkOtpt)
-        //     console.log(stockArray[i].symbol)
-        // }
+    stockArray.sort(function (a, b) {
+        if (a.symbol < b.symbol) {
+            return -1;
+        }
+        if (a.symbol > b.symbol) {
+            return 1;
+        }
 
+        // names must be equal
+        return 0;
+    })
+
+    for (let i = 0; i < stockArray.length; i++) {
         for(let j = 0; j < stockArray.length; j++){
             if(!stkOtpt){
                 var stkOtpt = new StockOutput(stockArray[i].symbol)
                 stockOutputArray.push(stkOtpt)
-                console.log(stkOtpt)
-            }else if(stkOtpt.symbol != stockArray[j].symbol){
+                //console.log(stkOtpt)
+            }else if(stockOutputArray[i].symbol != stockArray[j].symbol && stkOtpt.symbol != stockArray[j].symbol){
                 var stkOtpt = new StockOutput(stockArray[j].symbol)
-                console.log(stkOtpt)
+                stockOutputArray.push(stkOtpt)
+                //console.log(stockArray[j].symbol)
             }
         }
         break;
     }
 
-    //console.log()
+    console.log(stockOutputArray)
 
-    // for(let i = 0; i < stockArray.length; i++){
-    //     // if (!stkOtpt) {
+    // for (let i = 0; i < stockArray.length; i++) {
+    //     // if(!stkOtpt){
     //     //     var stkOtpt = new StockOutput(stockArray[i].symbol)
-    //     //     //stockOutputArray.push(stkOtpt)
-    //     // } else if ((stkOtpt.symbol != stockArray[i].symbol) && (stkOtpt.symbol != stockArray[i-1].symbol)) {
+    //     //     stockOutputArray.push(stkOtpt)
+    //     // }else if(stockOutputArray[i-1].symbol != stockArray[i].symbol && stkOtpt.symbol != stockArray[i-1].symbol){
     //     //     var stkOtpt = new StockOutput(stockArray[i].symbol)
-
+    //     //     stockOutputArray.push(stkOtpt)
+    //     //     console.log(stockArray[i].symbol)
     //     // }
 
-        
-        
-        
-
-    //     for(let j = i+1; j < stockArray.length; j++){
-
-            
-            
-
-            
-
-    //         if(stockArray[i].symbol == stockArray[j].symbol){
-    //             //console.log("stockArray[i].symbol: "+stockArray[i].symbol+" stockArray[j].symbol: "+stockArray[j].symbol)
-    //             //console.log("stockArray[i].timeStamp: "+stockArray[i].timeStamp+" stockArray[j].timeStamp: "+stockArray[j].timeStamp)
+    //     for(let j = 0; j < stockArray.length; j++){
+    //         if(!stkOtpt){
+    //             var stkOtpt = new StockOutput(stockArray[i].symbol)
+    //             stockOutputArray.push(stkOtpt)
+    //             //console.log(stkOtpt)
+    //         }else if(stockOutputArray[i].symbol != stockArray[j].symbol && stkOtpt.symbol != stockArray[j].symbol){
+    //             var stkOtpt = new StockOutput(stockArray[j].symbol)
+    //             stockOutputArray.push(stkOtpt)
+    //             console.log(stockOutputArray[i].symbol)
     //         }
-    //         //console.log("stockArray[i].symbol: "+stockArray[i].symbol+" stockArray[j].symbol: "+stockArray[j].symbol)
     //     }
-
-        
-    //     console.log(stkOtpt)
+    //     break;
     // }
-    
-    //console.log(stockOutputArray)
 
+    //console.log(stockOutputArray)
 }

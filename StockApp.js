@@ -87,6 +87,7 @@
 // Include the amount of time you spent working on the solution.
 
 // fs is a Node standard library package for reading and writing files
+const { time } = require('console');
 const fs = require('fs');
 
 fs.readFile('test.csv', 'utf8', (error, data) =>
@@ -154,28 +155,24 @@ function createOutput(inputString){
         break
     }
 
-    var tempArray = []
+    var maxTime = function(symbol, timeGap){
+        this.symbol = symbol,
+        this.timeGap = timeGap
+    }
+
+    var maxTimeArray = []
+
     for(let i = 0; i < stockArray.length; i++){
-        for(let j = i+1; j < stockArray.length; j++){
-
+        for(let j = i+1; j < stockArray.length; j++){  
             if(stockArray[i] != stockArray[j] && stockArray[i].symbol == stockArray[j].symbol){
-                console.log("stockArray[i]vvvv")
-                console.log(stockArray[i])
-                console.log("stockArray[j]vvvv")
-                console.log(stockArray[j])
+                let temp = new maxTime(stockArray[i].symbol,stockArray[j].timeStamp - stockArray[i].timeStamp)
+                maxTimeArray.push(temp)
+                i++
             }
-            // else if(tempArray[j] != tempArray[i]){
-
-            // }
-
-            // if(stockArray[i].symbol == stockArray[j].symbol && tempArray[j] != tempArray[i]){
-            //     var stkOtpt1 = new StockOutput(stockArray[j].symbol, stockArray[j].timeStamp, stockArray[j].quantity, stockArray[j].price, stockArray[j].price)
-            //     tempArray.push(stkOtpt1)
-            //     console.log("stockArray[i]: "+stockArray[i].symbol+" stockArray[j]: "+stockArray[j].symbol)
-            //     console.log(tempArray[j])
-            //     //console.log("stkOtpt1: "+stkOtpt1)
-            // }
         }
     }
-    //console.log(tempArray)
+
+    console.log(maxTimeArray)
+    
+    
 }

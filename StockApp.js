@@ -163,16 +163,28 @@ function createOutput(inputString){
     var maxTimeArray = []
 
     for(let i = 0; i < stockArray.length; i++){
+        let count = 0
         for(let j = i+1; j < stockArray.length; j++){  
             if(stockArray[i] != stockArray[j] && stockArray[i].symbol == stockArray[j].symbol){
                 let temp = new maxTime(stockArray[i].symbol,stockArray[j].timeStamp - stockArray[i].timeStamp)
                 maxTimeArray.push(temp)
+                maxTimeArray.sort(function (a, b) {
+                    if (a.symbol == b.symbol) {
+                        return b.timeGap - a.timeGap;
+                    }
+                });
+                count++
                 i++
+                if (count > 1) {
+                    maxTimeArray.pop()
+                }
             }
         }
+        
     }
 
     console.log(maxTimeArray)
+
     
-    
+
 }

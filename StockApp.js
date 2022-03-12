@@ -182,10 +182,68 @@ function createOutput(inputString){
         }
     }
 
+    // for(let i = 0; i < stockOutputArray.length; i++){
+    //     stockOutputArray[i].maxTimeGap = maxTimeArray[i].timeGap
+    // }
+
+    let temp
+    let temp1
+    var volume = function(symbol, vol){
+        this.symbol = symbol,
+        this.vol = vol
+    }
+    var volumeArray = []
+
+    for(let e of stockArray){
+        
+        if(!temp && !temp1){
+            temp = e.symbol
+            temp1 = e.quantity
+            
+        }else if(temp == e.symbol){
+            temp1 += e.quantity
+        }else if(temp != e.symbol){
+            //console.log(e.symbol)
+            //console.log(temp, temp1)
+            let volTemp = new volume(temp, temp1)
+            volumeArray.push(volTemp)
+            temp = e.symbol
+            temp1 = e.quantity
+            
+        }
+        
+        //console.log(temp, temp1)
+    }
+    //console.log(temp, temp1)
+    let volTemp = new volume(temp, temp1)
+    volumeArray.push(volTemp)
+    //console.log(volumeArray)
+    
     for(let i = 0; i < stockOutputArray.length; i++){
         stockOutputArray[i].maxTimeGap = maxTimeArray[i].timeGap
+        stockOutputArray[i].volume = volumeArray[i].vol
     }
-    console.log(stockOutputArray)
     
+
+    console.log(stockOutputArray)
+
+    // var volume = function(symbol, volume){
+    //     this.symbol = symbol,
+    //     this.volume = volume
+    //     //this.time = time
+    // }
+
+    // var volumeArray = []
+    // let volTemp = 0
+    
+    // for(let i = 0; i < stockArray.length-1; i++){
+
+    //     if(stockArray[i].symbol == stockArray[i+1].symbol){
+    //         let temp = new volume(stockArray[i].symbol, stockArray[i].quantity + stockArray[i+1].quantity)
+    //         console.log(temp)
+    //         console.log("[i]",i,stockArray[i])
+    //         console.log("[i+1]",i+1,stockArray[i+1],"\n")
+    //     }
+    // }
 
 }

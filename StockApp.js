@@ -153,7 +153,7 @@ function createOutput(inputString){
     for(let i = 0; i < stockOutputArray.length; i++){
         stockOutputArray[i].maxTimeGap = maxTimeArray[i].timeGap
         stockOutputArray[i].volume = volumeArray[i].vol
-        stockOutputArray[i].weightedAveragePrice = weightedAvgPriceArray[i].weighAvgPrice
+        stockOutputArray[i].weightedAveragePrice = weightedAvgPriceArray[i].weighAvgPrice/volumeArray[i].vol
     }
     
 

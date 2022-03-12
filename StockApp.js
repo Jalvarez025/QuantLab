@@ -180,11 +180,12 @@ function createOutput(inputString){
                 }
             }
         }
-        
     }
 
-    console.log(maxTimeArray)
-
+    for(let i = 0; i < stockOutputArray.length; i++){
+        stockOutputArray[i].maxTimeGap = maxTimeArray[i].timeGap
+    }
+    console.log(stockOutputArray)
     
 
 }

@@ -13,7 +13,7 @@ function createOutput(inputString){
         this.quantity = quantity
         this.price = price
     }
-
+    //console.log(inputString)
     //divide test.csv and create ordered list
     inputString = inputString.replace('﻿','').replaceAll('\n',',').replaceAll('\r','')
     inputString = inputString.split(',')
@@ -30,7 +30,7 @@ function createOutput(inputString){
         )
         stockArray.push(stk)
     }
-
+    //console.log(stockArray)
     // <symbol>,<MaxTimeGap>,<Volume>,<WeightedAveragePrice>,<MaxPrice>
     var StockOutput = function(symbol, maxTimeGap, volume, weightedAveragePrice, maxPrice) {
 
@@ -186,6 +186,25 @@ function createOutput(inputString){
         stockOutputArray[i].maxPrice = maxPriceArray[i].price
     }
     
+    var outputString = ''
 
-    console.log(stockOutputArray)
+    //iterate through elements
+    for (let i = 0; i < stockOutputArray.length; i++) {
+        outputString = outputString.concat(
+            stockOutputArray[i].symbol + ',' , 
+            stockOutputArray[i].maxTimeGap.toString() + ',' ,
+            stockOutputArray[i].volume.toString() + ',' ,
+            stockOutputArray[i].weightedAveragePrice.toString() + ',' ,
+            stockOutputArray[i].maxPrice.toString() + '\n'
+        )
+        
+
+    }
+    
+    fs.writeFile('output.csv', outputString , function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+    });
+
+    //console.log(outputString)
 }

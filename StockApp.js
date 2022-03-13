@@ -1,7 +1,7 @@
 const { time } = require('console');
 const fs = require('fs');
 
-fs.readFile('test.csv', 'utf8', (error, data) =>
+fs.readFile('input.csv', 'utf8', (error, data) =>
 error ? console.error(error) : createOutput(data)
 );
 

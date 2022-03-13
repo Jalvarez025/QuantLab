@@ -150,10 +150,40 @@ function createOutput(inputString){
     weightedAvgPriceArray.push(wapTemp)
     //console.log(weightedAvgPriceArray)
 
+    let symbolTemp2
+    let maxPriceTemp
+    var _maxPrice = function(symbol, price){
+        this.symbol = symbol,
+        this.price = price
+    }
+
+    var maxPriceArray = []
+
+    for(let e of stockArray){
+        if(!symbolTemp2 && !maxPriceTemp){
+            symbolTemp2 = e.symbol
+            maxPriceTemp = e.price
+        }else if(symbolTemp2 == e.symbol && maxPriceTemp < e.price){
+            maxPriceTemp = e.price
+        }else if(symbolTemp2 != e.symbol){
+            //console.log(symbolTemp2,maxPriceTemp)
+            let _maxPriceTemp = new _maxPrice(symbolTemp2,maxPriceTemp)
+            maxPriceArray.push(_maxPriceTemp)
+            symbolTemp2 = e.symbol
+            maxPriceTemp = e.price
+        }
+    }
+
+    let _maxPriceTemp = new _maxPrice(symbolTemp2,maxPriceTemp)
+    maxPriceArray.push(_maxPriceTemp)
+
+    //console.log(maxPriceArray)
+
     for(let i = 0; i < stockOutputArray.length; i++){
         stockOutputArray[i].maxTimeGap = maxTimeArray[i].timeGap
         stockOutputArray[i].volume = volumeArray[i].vol
         stockOutputArray[i].weightedAveragePrice = Math.round(weightedAvgPriceArray[i].weighAvgPrice/volumeArray[i].vol)
+        stockOutputArray[i].maxPrice = maxPriceArray[i].price
     }
     
 
